@@ -1,0 +1,643 @@
+{
+  "createdAt": "2025-09-11T04:59:25.247Z",
+  "updatedAt": "2025-09-12T00:23:38.208Z",
+  "id": "JSzY2Mx42lIYv9oX",
+  "name": "My Sub-Workflow 3",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        272,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        480,
+        352
+      ],
+      "id": "aded493c-d785-410b-b728-f73da66910eb",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-20b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        144,
+        608
+      ],
+      "id": "ca92bcba-0639-496e-bc7f-8facb0482145",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "JZHOcXZfA4lvop7b",
+          "name": "OpenRouter account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        624
+      ],
+      "id": "2edbc9fc-1978-475c-8c40-dded7b7f187f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        304,
+        784
+      ],
+      "id": "926b45c3-0ea5-4fcf-9158-7b552b03283d",
+      "name": "Create spreadsheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uUNAokoFwj5pZUWs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "operation": "deleteSpreadsheet",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        464,
+        784
+      ],
+      "id": "4ba7cccf-d94f-409c-8ac6-7740e2faec63",
+      "name": "Delete spreadsheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uUNAokoFwj5pZUWs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk",
+          "mode": "list",
+          "cachedResultName": "Asistente Personal de Oscar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tarea": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tarea', ``, 'string') }}",
+            "Estado": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Estado', ``, 'string') }}",
+            "Propietario": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Propietario', ``, 'string') }}",
+            "Fase": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Fase', ``, 'string') }}",
+            "Fecha de entrega": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Fecha_de_entrega', ``, 'string') }}",
+            "Notas": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notas', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Tarea",
+              "displayName": "Tarea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Propietario",
+              "displayName": "Propietario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha de entrega",
+              "displayName": "Fecha de entrega",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        704,
+        608
+      ],
+      "id": "b5579d82-4764-4941-adc7-d2ebe797457c",
+      "name": "Append or update row",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uUNAokoFwj5pZUWs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk",
+          "mode": "list",
+          "cachedResultName": "Asistente Personal de Oscar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tarea": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tarea', ``, 'string') }}",
+            "Estado": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Estado', ``, 'string') }}",
+            "Propietario": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Propietario', ``, 'string') }}",
+            "Fase": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Fase', ``, 'string') }}",
+            "Fecha de entrega": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Fecha_de_entrega', ``, 'string') }}",
+            "Notas": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notas', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Tarea",
+              "displayName": "Tarea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Propietario",
+              "displayName": "Propietario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha de entrega",
+              "displayName": "Fecha de entrega",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        592,
+        608
+      ],
+      "id": "b474c186-c3d1-4fe8-a925-b25866a2c0f3",
+      "name": "Append row",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uUNAokoFwj5pZUWs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "remove",
+        "documentId": {
+          "__rl": true,
+          "value": "13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk",
+          "mode": "list",
+          "cachedResultName": "Asistente Personal de Oscar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        848,
+        624
+      ],
+      "id": "60ea4e4c-ed04-453d-9e6c-4bc4e89c5970",
+      "name": "Delete sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uUNAokoFwj5pZUWs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        960,
+        624
+      ],
+      "id": "17d35372-82d2-43b9-9219-e2510ffa785b",
+      "name": "Delete rows",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uUNAokoFwj5pZUWs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk",
+          "mode": "list",
+          "cachedResultName": "Asistente Personal de Oscar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        624
+      ],
+      "id": "252a922f-51bf-4109-8dd1-edb374f9fb90",
+      "name": "Obtener filas",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uUNAokoFwj5pZUWs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk",
+          "mode": "list",
+          "cachedResultName": "Asistente Personal de Oscar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13-HH7UJZpdo2tBpSl2lfB3L-x-Nyo8FjGJ9My1dZusk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1184,
+        624
+      ],
+      "id": "87b632b9-1a24-423e-af4d-811258111bcd",
+      "name": "Actualiza filas",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uUNAokoFwj5pZUWs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "channel_id": "9fd99628-65aa-4456-8a12-11c6587072b1",
+        "notification": "Sheet gestionado con exito"
+      },
+      "type": "n8n-nodes-pushinator.pushinator",
+      "typeVersion": 1,
+      "position": [
+        832,
+        352
+      ],
+      "id": "437ee7e6-e217-4e82-9fc7-e083fdb79d1f",
+      "name": "Pushinator",
+      "credentials": {
+        "pushinatorApi": {
+          "id": "LzC8rlkm5Xkljeuc",
+          "name": "Pushinator account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create spreadsheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete spreadsheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete sheet": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete rows": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener filas": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualiza filas": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Pushinator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "versionId": "0b817ce3-3736-4553-a91e-f4522460448c",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-11T04:59:25.247Z",
+      "updatedAt": "2025-09-11T04:59:25.247Z",
+      "role": "workflow:owner",
+      "workflowId": "JSzY2Mx42lIYv9oX",
+      "projectId": "XjBHfNWSN1GAgqMC"
+    }
+  ],
+  "tags": []
+}
